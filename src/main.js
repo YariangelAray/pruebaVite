@@ -1,24 +1,36 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { sumar, restar, restablecer } from "./acciones";
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const app = document.querySelector('#app');
 
-setupCounter(document.querySelector('#counter'))
+const span = document.createElement('span');
+span.textContent = "Contador 0";
+span.classList.add("contador");
+
+const botonMas = document.createElement('button');
+botonMas.textContent = "+";
+botonMas.classList.add("boton");
+
+const botonMenos = document.createElement('button');
+botonMenos.textContent = "-";
+botonMenos.classList.add("boton");
+
+const botonRestablecer = document.createElement('button');
+botonRestablecer.textContent = "Restablecer";
+botonRestablecer.classList.add("boton");
+
+const div = document.createElement('div');
+div.append(botonMas, botonMenos, botonRestablecer)
+app.append(span, div);
+
+botonMas.addEventListener('click', () => {
+  sumar(span);
+});
+
+botonMenos.addEventListener('click', () => {
+  restar(span);
+});
+
+botonRestablecer.addEventListener('click', () => {
+  restablecer(span);
+});
